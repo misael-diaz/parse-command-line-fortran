@@ -90,28 +90,6 @@ program main
             write (*, *) "WARN: packmol detected non-standard command-line handling"
         end if
 
-    else if (argc == 2) then ! user may have specified the input or the output file
-
-        cmdno = 1
-        call get_command_argument(cmdno, value=cmd, length=length, status=stat)
-        if (stat == -1) then
-            error stop "ERROR: truncation error"
-        else if (stat > 0) then
-            error stop "ERROR: command-line retrieval error"
-        end if
-
-        if (parse_command(cmd) == INPUT_FLAG) then
-            call get_filename(cmdno, input_file)
-            specified_input_file = .true.
-            write (*, *) "input: ", trim(input_file)
-        else if (parse_command(cmd) == OUTPUT_FLAG) then
-            call get_filename(cmdno, output_file)
-            specified_output_file = .true.
-            write (*, *) "output: ", trim(output_file)
-        else
-            error stop "ERROR: packmol received invalid command-line arguments"
-        end if
-
     else if (argc == 4) then ! user has specified both the input and output files
 
         cmdno = 1
