@@ -70,6 +70,8 @@ program main
     character(len=fnamesz) :: input_file
     character(len=fnamesz) :: output_file
     character(len=*), parameter :: errmsg = "ERROR: packmol command-line error show help"
+    character(len=*), parameter :: errcmp = "ERROR: packmol expects different " // &
+        "for the input and output files"
 
     specified_input_file = .false.
     specified_output_file = .false.
@@ -129,6 +131,10 @@ program main
         ! assertion: both must be true if not we have a logic error in the code
         if (.not. specified_input_file .or. .not. specified_output_file) then
             error stop "ERROR: packmol received invalid command-line arguments"
+        end if
+
+        if (trim(input_file) == trim(output_file)) then
+                error stop errcmp
         end if
 
         write (*, *) "input: ", trim(input_file)
