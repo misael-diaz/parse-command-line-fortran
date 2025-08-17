@@ -12,6 +12,10 @@ input and output files. The following snippet shows a sample command-line string
 packmol -in input.txt -out output.txt
 ```
 
+You may use another file extension of your choosing or none at all, for packmol does not
+enforce you to use the `.txt` file extension for the filenames. We are using `.txt` to
+indicate that the input and output files are plain-text files.
+
 If you ommit command-line arguments packmol will behave in the usual way and will expect
 you to redirect the input file for backwards compatibility:
 
@@ -44,3 +48,4 @@ Executing packmol with input redirection:
 
 ```sh
 ./packmol < input.txt
+```
