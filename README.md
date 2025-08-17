@@ -1,4 +1,7 @@
-# Packmol command-line argument documentation
+# Packmol's command-line
+
+This repository is a demo code for [packmol](https://github.com/m3g/packmol) to add
+support for specifying input and output filenames through the command-line.
 
 ## Example
 
