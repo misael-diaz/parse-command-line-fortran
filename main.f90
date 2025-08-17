@@ -1,8 +1,3 @@
-! Assumption:
-! Packmol is being executed in an Unix-like operative system and so the program name is
-! present in the command-line string. If that's not the case we abort execution because
-! we are not handling that special case.
-
 module parser
     implicit none
     integer, parameter :: INPUT_FLAG = 0
@@ -73,10 +68,9 @@ program main
             error stop "ERROR: command-line retrieval error"
         end if
 
-        ! CAVEAT this could be a false positive if the sysadmin renames packmol
         idx = index(cmd, "packmol")
         if (idx == 0) then
-            error stop "ERROR: packmol detected non-standard command-line handling"
+            write (*, *) "WARN: packmol detected non-standard command-line handling"
         end if
 
     else if (argc == 2) then ! user may have specified the input or the output file
