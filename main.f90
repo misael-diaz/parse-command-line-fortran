@@ -17,12 +17,29 @@ contains
         integer :: res
         integer :: idx
         character(*), intent(in) :: cmd
+        character(*), parameter :: cmdin = "-in"
+        character(*), parameter :: cmdout = "-out"
+        character(*), parameter :: errmsg = "ERROR: unrecognized command-line argument: "
 
         idx = index(cmd, "-in")
         if (idx /= 0) then
+
+            if (len(trim(cmd)) /= len(cmdin)) then
+                    error stop errmsg // trim(cmd)
+            end if
             res = INPUT_FLAG
+
         else
+
+            idx = index(cmd, "-out")
+            if (idx == 0) then
+                    error stop errmsg // trim(cmd)
+            end if
+            if (len(trim(cmd)) /= len(cmdout)) then
+                    error stop errmsg // trim(cmd)
+            end if
             res = OUTPUT_FLAG
+
         end if
 
         return
